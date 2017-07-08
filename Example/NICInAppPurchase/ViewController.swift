@@ -7,12 +7,34 @@
 //
 
 import UIKit
+import NICInAppPurchase
 
 class ViewController: UIViewController {
 
+    let sticker_pack1 = "com.test"
+    let sticker_pack2 = "com.test"
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+    }
+
+    @IBAction func btnInappPurchaseAction(_ sender: UIButton) {
+
+        NICInAppPurchase.sharedInstance.RequestInappPaymentQueue(sticker_pack1) { (aPurchaseStatus:String) in
+            
+            print("objSKPaymentTransactionState = \(aPurchaseStatus)")
+            
+            if (aPurchaseStatus == paymentStatus.purchased.rawValue){
+                
+            }else if (aPurchaseStatus == paymentStatus.failed.rawValue){
+                
+            }else if (aPurchaseStatus == paymentStatus.restored.rawValue){
+                
+            }
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
