@@ -1,0 +1,6 @@
+framework module Pods_NICInAppPurchase_Example {
+  umbrella header "Pods-NICInAppPurchase_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}

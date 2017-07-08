@@ -1,0 +1,16 @@
+PODS:
+  - NICInAppPurchase (0.1.0)
+
+DEPENDENCIES:
+  - NICInAppPurchase (from `../`)
+
+EXTERNAL SOURCES:
+  NICInAppPurchase:
+    :path: ../
+
+SPEC CHECKSUMS:
+  NICInAppPurchase: 40031a27fca9588572078cb53928c02b07c9cae8
+
+PODFILE CHECKSUM: 514331f7633b47112c03fef5dea88cdb4d298883
+
+COCOAPODS: 1.3.0.beta.2

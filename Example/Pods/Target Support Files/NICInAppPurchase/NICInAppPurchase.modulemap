@@ -1,0 +1,6 @@
+framework module NICInAppPurchase {
+  umbrella header "NICInAppPurchase-umbrella.h"
+
+  export *
+  module * { export * }
+}
