@@ -8,6 +8,7 @@
 
 import UIKit
 import NICInAppPurchase
+import MBProgressHUD
 
 class ViewController: UIViewController {
 
@@ -22,10 +23,13 @@ class ViewController: UIViewController {
 
     @IBAction func btnInappPurchaseAction(_ sender: UIButton) {
 
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        
         NICInAppPurchase.sharedInstance.RequestInappPaymentQueue(sticker_pack1) { (aPurchaseStatus:String) in
             
             print("objSKPaymentTransactionState = \(aPurchaseStatus)")
             
+            MBProgressHUD.hide(for: self.view, animated: true)
             if (aPurchaseStatus == paymentStatus.purchased.rawValue){
                 
             }else if (aPurchaseStatus == paymentStatus.failed.rawValue){

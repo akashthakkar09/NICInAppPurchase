@@ -6,6 +6,6 @@ target 'NICInAppPurchase_Example' do
   target 'NICInAppPurchase_Tests' do
     inherit! :search_paths
 
-    
+
   end
 end
