@@ -1,25 +1,86 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="NICInAppPurchase_Example" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FwP-YD-fpv">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NICInAppPurchase" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Wv-MK-JFJ">
+                                        <rect key="frame" x="43" y="19" width="290" height="44"/>
+                                        <accessibility key="accessibilityConfiguration" label="Company Name"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="C0P-BQ-KQy"/>
+                                            <constraint firstAttribute="width" constant="290" id="UfM-pQ-hik"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.12941176469999999" green="0.17254901959999999" blue="0.39607843139999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="4UH-kC-Vjy"/>
+                                    <constraint firstItem="9Wv-MK-JFJ" firstAttribute="centerX" secondItem="FwP-YD-fpv" secondAttribute="centerX" id="eBH-f8-6Lx"/>
+                                    <constraint firstAttribute="bottom" secondItem="9Wv-MK-JFJ" secondAttribute="bottom" constant="1" id="wxd-sV-sZl"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c56-nV-4aE">
+                                <rect key="frame" x="72" y="148" width="230" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="230" id="JFH-jr-0B6"/>
+                                    <constraint firstAttribute="height" constant="40" id="ivp-HK-J0m"/>
+                                </constraints>
+                                <state key="normal" title="Request In-App purchase"/>
+                                <connections>
+                                    <action selector="btnInappPurchaseAction:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Kga-aU-J96"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tEC-Ht-zbr">
+                                <rect key="frame" x="72" y="223" width="230" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="B3a-eX-577"/>
+                                    <constraint firstAttribute="width" constant="230" id="mnO-ZM-MfV"/>
+                                </constraints>
+                                <state key="normal" title="Restore"/>
+                                <connections>
+                                    <action selector="btnRestoreInappPurchaseAction:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="AM4-96-46K"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="FwP-YD-fpv" secondAttribute="trailing" id="5Kb-Vq-iKu"/>
+                            <constraint firstItem="tEC-Ht-zbr" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="BzX-7W-mfh"/>
+                            <constraint firstItem="tEC-Ht-zbr" firstAttribute="top" secondItem="c56-nV-4aE" secondAttribute="bottom" constant="35" id="OCx-7T-7zn"/>
+                            <constraint firstItem="FwP-YD-fpv" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="RNk-DT-sgx"/>
+                            <constraint firstItem="FwP-YD-fpv" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="nAY-5S-1fa"/>
+                            <constraint firstItem="c56-nV-4aE" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="uEN-Ie-Ick"/>
+                            <constraint firstItem="c56-nV-4aE" firstAttribute="top" secondItem="FwP-YD-fpv" secondAttribute="bottom" constant="84" id="zxv-tM-kP3"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="32.799999999999997" y="38.23088455772114"/>
         </scene>
     </scenes>
 </document>

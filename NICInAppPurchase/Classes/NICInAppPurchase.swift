@@ -24,7 +24,7 @@ public enum paymentStatus : String {
     case deferred  = "deferred" // The transaction is in the queue, but its final status is pending external action.
 }
 
-public typealias InAppCompletionHander = (_ inAppState: String)->Void
+public typealias InAppCompletionHander = (_ inAppState: paymentStatus, _ productId: String?)->Void
 
 public class NICInAppPurchase: NSObject,SKProductsRequestDelegate,SKPaymentTransactionObserver {
     
@@ -55,6 +55,13 @@ public class NICInAppPurchase: NSObject,SKProductsRequestDelegate,SKPaymentTrans
         }
     }
     
+    public func restoreInAppPurchase(inAppCompletion:@escaping InAppCompletionHander) -> Void{
+        objInAppCompletionHander = inAppCompletion
+        SKPaymentQueue.default().add(self)
+        SKPaymentQueue.default().restoreCompletedTransactions()
+    }
+    
+    
     @available(iOS 3.0, *)
     public func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
         
@@ -71,7 +78,7 @@ public class NICInAppPurchase: NSObject,SKProductsRequestDelegate,SKPaymentTrans
                     SKPaymentQueue.default().finishTransaction(transaction as! SKPaymentTransaction)
                    
                     if (objInAppCompletionHander != nil){
-                        objInAppCompletionHander!(paymentStatus.purchased.rawValue)
+                        objInAppCompletionHander!(.purchased,trans.payment.productIdentifier)
                     }
                     
                     break;
@@ -81,7 +88,7 @@ public class NICInAppPurchase: NSObject,SKProductsRequestDelegate,SKPaymentTrans
                     print("Process product id = \(String(describing: trans.transactionIdentifier))")
                     SKPaymentQueue.default().finishTransaction(transaction as! SKPaymentTransaction)
                     if (objInAppCompletionHander != nil){
-                        objInAppCompletionHander!(paymentStatus.failed.rawValue)
+                        objInAppCompletionHander!(.failed,trans.payment.productIdentifier)
                     }
                     break;
                     
@@ -90,7 +97,7 @@ public class NICInAppPurchase: NSObject,SKProductsRequestDelegate,SKPaymentTrans
                     print("Process product id = \(String(describing: trans.transactionIdentifier))")
                     SKPaymentQueue.default().restoreCompletedTransactions()
                     if (objInAppCompletionHander != nil){
-                        objInAppCompletionHander!(paymentStatus.restored.rawValue)
+                        objInAppCompletionHander!(.restored,trans.payment.productIdentifier)
                     }
                     break;
                     
@@ -123,7 +130,7 @@ public class NICInAppPurchase: NSObject,SKProductsRequestDelegate,SKPaymentTrans
         } else {
             print("nothing")
             if (objInAppCompletionHander != nil){
-                objInAppCompletionHander!(paymentStatus.failed.rawValue)
+                objInAppCompletionHander!(.failed,nil)
             }
         }
     }
@@ -132,7 +139,19 @@ public class NICInAppPurchase: NSObject,SKProductsRequestDelegate,SKPaymentTrans
     public func request(_ request: SKRequest, didFailWithError error: Error) {
         print("Error Fetching product information");
         if (objInAppCompletionHander != nil){
-            objInAppCompletionHander!(paymentStatus.failed.rawValue)
+            objInAppCompletionHander!(.failed,nil)
+        }
+    }
+    
+    public func paymentQueueRestoreCompletedTransactionsFinished(_ queue: SKPaymentQueue) {
+        if (objInAppCompletionHander != nil){
+            objInAppCompletionHander!(.restored, nil)
+        }
+    }
+    
+    public func paymentQueue(_ queue: SKPaymentQueue, restoreCompletedTransactionsFailedWithError error: Error) {
+        if (objInAppCompletionHander != nil){
+            objInAppCompletionHander!(.failed, nil)
         }
     }
     

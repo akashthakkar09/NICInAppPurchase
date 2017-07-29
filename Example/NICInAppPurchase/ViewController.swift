@@ -22,26 +22,37 @@ class ViewController: UIViewController {
     }
 
     @IBAction func btnInappPurchaseAction(_ sender: UIButton) {
-
-        // Start the progress hud here..
         
-        NICInAppPurchase.sharedInstance.RequestInappPaymentQueue(sticker_pack1) { (aPurchaseStatus:String) in
+        NICInAppPurchase.sharedInstance.RequestInappPaymentQueue(sticker_pack1) { (paymentStatus, ProductID) in
             
-            print("objSKPaymentTransactionState = \(aPurchaseStatus)")
-            
-            
-            // Hide the progress hud here..
-            
-            if (aPurchaseStatus == paymentStatus.purchased.rawValue){
+            if (paymentStatus == .purchased){
                 
-            }else if (aPurchaseStatus == paymentStatus.failed.rawValue){
+            }else if (paymentStatus == .failed){
                 
-            }else if (aPurchaseStatus == paymentStatus.restored.rawValue){
+            }else if (paymentStatus == .restored){
                 
             }
         }
         
     }
+    
+    @IBAction func btnRestoreInappPurchaseAction(_ sender: Any) {
+        
+        NICInAppPurchase.sharedInstance.restoreInAppPurchase { (paymentStatus, ProductID) in
+            
+            if (paymentStatus == .purchased){
+                
+            }else if (paymentStatus == .failed){
+                
+            }else if (paymentStatus == .restored){
+                
+            }
+        }
+        
+    }
+    
+    
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
